@@ -51,6 +51,7 @@
             width: 100%;
             position: relative;
             z-index: 1; /* Ensure content is above watermark */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
         }
 
         .hero-image-container {
@@ -58,6 +59,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-width: 300px; /* Ensure image takes up enough space */
         }
 
         .hero-image-container img {
@@ -74,6 +76,7 @@
             align-items: flex-start;
             padding-left: 50px;
             text-align: left;
+            min-width: 300px; /* Ensure text takes up enough space */
         }
 
         .hero-text-container h1,
@@ -125,10 +128,13 @@
                 flex-direction: column;
                 text-align: center;
             }
+            .hero-image-container {
+                margin-bottom: 30px;
+            }
             .hero-text-container {
                 padding-left: 0;
                 align-items: center;
-                margin-top: 30px;
+                margin-top: 0; /* Adjusted for column layout */
             }
             .hero-text-container h1,
             .hero-text-container h2,
@@ -267,6 +273,9 @@
                 padding-bottom: 30px;
                 margin-bottom: 30px;
             }
+            .experience-column {
+                padding-top: 30px; /* Add some space above experience on mobile */
+            }
         }
 
         .section-block {
@@ -309,6 +318,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
+            justify-content: center; /* Center icons on mobile */
         }
 
         .software-icon {
@@ -408,6 +418,21 @@
             border-radius: 8px;
         }
 
+        .final-screenshot-section {
+            width: 100%;
+            max-width: 1200px; /* Match other sections */
+            padding: 50px 20px;
+            box-sizing: border-box;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .final-screenshot-section h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
         .final-screenshot-section img {
             max-width: 90%; /* Reduced max-width to make the image smaller */
             height: auto;
@@ -459,6 +484,9 @@
         }
 
         @media (max-width: 768px) {
+            .logos-section h2 {
+                font-size: 1.5em;
+            }
             .logo-item {
                 flex: 1 1 100%; /* Stack logos vertically on small screens */
                 max-width: 100%;
