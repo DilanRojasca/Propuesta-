@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leidy Serna - Portfolio</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Using a common sans-serif font */
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8; /* A very light grey to simulate the background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 100vh; /* Take full viewport height */
+            background-color: #f8f8f8;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Faint FASHION watermark */
+        .hero-section::before {
+            content: "FASHION";
+            position: absolute;
+            font-size: 20vw; /* Large size relative to viewport width */
+            color: rgba(0, 0, 0, 0.03); /* Very transparent black */
+            font-weight: bold;
+            z-index: 0;
+            user-select: none;
+            pointer-events: none;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-10deg); /* Slight rotation */
+            white-space: nowrap;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px; /* Limit content width */
+            width: 100%;
+            position: relative;
+            z-index: 1; /* Ensure content is above watermark */
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .hero-text-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 50px;
+            text-align: left;
+        }
+
+        .hero-text-container h1,
+        .hero-text-container h2,
+        .hero-text-container h3 {
+            margin: 0;
+            font-weight: 900; /* Extra bold */
+            color: #333;
+            line-height: 1;
+        }
+
+        .hero-text-container h1 {
+            font-size: 5vw; /* Responsive font size */
+            position: relative;
+        }
+
+        .hero-text-container h2 {
+            font-size: 5vw;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .hero-text-container h3 {
+            font-size: 4vw;
+            margin-top: 10px;
+        }
+
+        .year-tag, .name-tag {
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.9em;
+            font-weight: normal;
+            margin-top: 15px;
+            display: inline-block;
+            background-color: white;
+        }
+
+        .name-tag {
+            margin-top: 10px;
+        }
+
+        /* Specific styling for stylized letters - will be hard to replicate perfectly with pure CSS */
+        /* For "PORTFOLIO", the 'F' is stylized. For "FASHION", the 'O' is stylized. */
+        /* These would ideally be custom fonts or SVG graphics for exact replication. */
+
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text-container {
+                padding-left: 0;
+                align-items: center;
+                margin-top: 30px;
+            }
+            .hero-text-container h1,
+            .hero-text-container h2,
+            .hero-text-container h3 {
+                font-size: 8vw;
+            }
+            .hero-section::before {
+                font-size: 30vw;
+            }
+        }
+
+        .about-me-section {
+            width: 100%;
+            max-width: 1200px; /* Match hero section width */
+            padding: 50px 20px;
+            box-sizing: border-box;
+            /* background-color: white; */ /* Removed for subtlety */
+            margin-top: 30px; /* Reduced margin to blend more */
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); */ /* Removed for subtlety */
+            border-radius: 8px; /* Keep border-radius for soft edges if needed later */
+        }
+
+        .about-me-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .about-me-header .section-title {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .about-me-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .name-display {
+            flex: 1;
+            min-width: 280px; /* Ensure name takes enough space */
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .name-display .first-name {
+            display: block;
+            font-family: 'Playfair Display', serif; /* Or a similar elegant cursive font */
+            font-size: 7vw; /* Large and responsive */
+            line-height: 0.8;
+            color: #333;
+            font-weight: normal;
+        }
+
+        .name-display .last-name {
+            display: block;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 7vw; /* Large and responsive */
+            line-height: 0.8;
+            color: #333;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .about-me-text {
+            flex: 2;
+            min-width: 300px; /* Ensure text takes enough space */
+            padding-left: 50px;
+            box-sizing: border-box;
+            font-size: 1em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .about-me-text p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .about-me-header {
+                flex-direction: column;
+                margin-bottom: 20px;
+            }
+            .about-me-header .location, .about-me-header .section-title {
+                margin-bottom: 10px;
+            }
+            .about-me-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .name-display {
+                text-align: center;
+            }
+            .name-display .first-name,
+            .name-display .last-name {
+                font-size: 10vw;
+            }
+            .about-me-text {
+                padding-left: 0;
+                margin-top: 30px;
+            }
+        }
+
+        .contact-experience-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            padding: 50px 20px;
+            box-sizing: border-box;
+            margin-top: 30px;
+        }
+
+        .contact-details-column,
+        .experience-column {
+            flex: 1;
+            min-width: 300px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .contact-details-column {
+            border-right: 1px solid #eee; /* Visual separator */
+        }
+
+        @media (max-width: 768px) {
+            .contact-details-column {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 30px;
+                margin-bottom: 30px;
+            }
+        }
+
+        .section-block {
+            margin-bottom: 40px;
+        }
+
+        .block-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            display: inline-block;
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 5px 15px;
+            background-color: white;
+        }
+
+        .contact-item,
+        .education-item {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        /* Placeholder for icons, ideally these would be SVG or font-awesome */
+        .phone-icon::before { content: "\260E"; } /* Unicode for phone */
+        .email-icon::before { content: "\2709"; } /* Unicode for envelope */
+        .behance-icon::before { content: "B"; font-weight: bold; } /* Simple B for Behance */
+
+        .software-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .software-icon {
+            border: 1px solid #333;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #333;
+            background-color: white;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #ccc;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #333;
+            border: 2px solid white; /* To create a ring effect against the line */
+        }
+
+        .timeline-year {
+            display: block;
+            font-weight: bold;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content h5 {
+            margin: 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .timeline-content p {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.5;
+            margin-top: 5px;
+        }
+
+        .design-sheets-section {
+            width: 100%;
+            max-width: 1200px; /* Match other sections */
+            padding: 50px 20px;
+            box-sizing: border-box;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .design-sheets-section h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px; /* Reduced margin to make space for description */
+        }
+
+        .design-sheets-section .image-description {
+            font-size: 1em;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .design-sheets-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center the image */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .final-screenshot-section img {
+            max-width: 90%; /* Reduced max-width to make the image smaller */
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center the image */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .logos-section {
+            width: 100%;
+            max-width: 1200px;
+            padding: 50px 20px;
+            box-sizing: border-box;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .logos-section h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .logos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Space between images */
+        }
+
+        .logo-item {
+            flex: 1 1 30%; /* Allows items to grow/shrink, sets base width to ~30% for 3 in a row */
+            max-width: 300px; /* Max width for each logo item */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain; /* Ensures image fits within its container without cropping */
+        }
+
+        @media (max-width: 768px) {
+            .logo-item {
+                flex: 1 1 100%; /* Stack logos vertically on small screens */
+                max-width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="hero-image-container">
+                <img src="https://media.istockphoto.com/id/583861886/es/vector/pretty-woman-de-compras-en-par%C3%ADs.jpg?s=612x612&w=0&k=20&c=IGBl-y76A4syyEs0ELs7C7ZAXWHfDetPvPjGoRlUuEs=" alt="Pretty Woman shopping in Paris - vector illustration">
+            </div>
+            <div class="hero-text-container">
+                <h1>PORT<span style="font-family: cursive; font-weight: normal;">F</span>OLIO</h1> <!-- Using cursive as a placeholder for stylized F -->
+                <h2>FASHI<span style="font-family: cursive; font-weight: normal;">O</span>N</h2> <!-- Using cursive as a placeholder for stylized O -->
+                <h3>DESIGN</h3>
+                <span class="year-tag">2025</span>
+                <span class="name-tag">Leidy Serna</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-me-section">
+        <div class="about-me-header">
+            <span class="location">MEDELLIN</span>
+            <span class="section-title">ABOUT ME</span>
+            <span class="location">COLOMBIA</span>
+        </div>
+        <div class="about-me-content">
+            <div class="name-display">
+                <span class="first-name"><span style="font-family: cursive; font-weight: normal;">L</span>eidy</span>
+                <span class="last-name"><span style="font-family: cursive; font-weight: normal;">S</span>erna</span>
+            </div>
+            <div class="about-me-text">
+                <p>Hola, soy Leidy Serna, diseñadora de vestuario con un enfoque en la moda y la innovación. Destaco en el manejo de herramientas digitales, lo que me permite explorar nuevas tendencias y plasmar mis ideas de manera creativa. Me considero una persona activa y productiva, siempre en busca de aprendizaje y mejora continua. Mi enfoque está en desarrollar mis habilidades para aportar de manera significativa al mundo del diseño de moda.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-experience-section">
+        <div class="contact-details-column">
+            <div class="section-block">
+                <h4 class="block-title">CONTACTO</h4>
+                <p class="contact-item"><i class="phone-icon"></i> Lorem ipsum dolor sit amet</p>
+                <p class="contact-item"><i class="email-icon"></i> loremipsum@email.com</p>
+                <p class="contact-item"><i class="behance-icon"></i> Behance: loremipsum.net/leidy_serna</p>
+            </div>
+
+            <div class="section-block">
+                <h4 class="block-title">EDUCACIÓN</h4>
+                <p class="education-item">Lorem ipsum dolor sit amet, 2021 - 2024. <em>Lorem Ipsum 12881, Las Condes.</em></p>
+                <p class="education-item">Lorem ipsum dolor sit amet, 2015 - 2019. <em>Nataniel Cox 1851, Santiago.</em></p>
+                <p class="education-item">Lorem ipsum dolor sit amet, 2006 - 2014. <em>Matta 1089, Santiago.</em></p>
+            </div>
+
+            <div class="section-block">
+                <h4 class="block-title">SOFTWARES</h4>
+                <div class="software-icons">
+                    <span class="software-icon">Lr</span>
+                    <span class="software-icon">Ps</span>
+                    <span class="software-icon">CLO</span>
+                    <span class="software-icon">Ai</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-column">
+            <div class="section-block">
+                <h4 class="block-title">EXPERIENCIA</h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">2024</span>
+                        <div class="timeline-content">
+                            <h5>Lorem Ipsum Dolor</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">2023</span>
+                        <div class="timeline-content">
+                            <h5>Lorem Ipsum Dolor Sit Amet</h5>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="design-sheets-section">
+        <h2>LOOK ONE & LOOK TWO</h2>
+        <p class="image-description">Design Sheets Look One and Look Two</p>
+        <img src="images/Screenshot 2025-12-08 at 5.06.19 PM.png" alt="Final Screenshot">
+    </div>
+
+    <div class="logos-section">
+        <h2>Ejemplos de Logos</h2>
+        <div class="logos-container">
+            <div class="logo-item">
+                <img src="images/Logos - Confecciones moda.png" alt="Logo Máquina de Coser Leidy Serna">
+            </div>
+            <div class="logo-item">
+                <img src="images/Minimalist Fashion Brand Logo with Sewing Machine.png" alt="Logo Círculo Leidy Serna">
+            </div>
+            <div class="logo-item">
+                <img src="images/Soft Pink and Mint Logo Design.png" alt="Logo Leidy Confecciones Moda">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
